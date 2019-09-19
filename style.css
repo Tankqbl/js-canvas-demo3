@@ -1,0 +1,26 @@
+* {
+  margin: 0%;
+  padding: 0%;
+  box-sizing: border-box;
+}
+#wrapper {
+  border: 1px black solid;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+#wrapper > #canvas {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border: 1px red solid;
+  transform: translate(-50%, -50%);
+  height: 90vh;
+  width: 100vw;
+}
+.actions {
+  position: fixed;
+  border: 1px black solid;
+  top: 10px;
+  left: 40px;
+}
