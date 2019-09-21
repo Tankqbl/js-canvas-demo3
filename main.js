@@ -11,9 +11,7 @@ let hue = 0;
 let shuimo1 = false;
 let shuimo2 = false;
 let op = 0.3;
-if (op > 1) {
-  op = 0.3;
-}
+
 canvas.width = document.documentElement.clientWidth;
 canvas.height = document.documentElement.clientHeight;
 let last;
@@ -79,7 +77,7 @@ canvas.onmousedown = e => {
   last = (e.clientX, e.clientY);
 };
 canvas.onmousemove = e => {
-  if (paint2 === true) {
+  if (paint2) {
     ctx.strokeStyle = `black`;
     drawLine(last[0], last[1], e.clientX, e.clientY);
     last = [e.clientX, e.clientY];
@@ -94,14 +92,18 @@ canvas.onmousemove = e => {
     drawLine(last[0], last[1], e.clientX, e.clientY);
     last = [e.clientX, e.clientY];
   }
+  if (shuimo2 === true) {
+    ctx.strokeStyle = `rgba(0,0,0,${op})`;
+    op += 0.1;
+    drawLine(last[0], last[1], e.clientX, e.clientY);
+    last = [e.clientX, e.clientY];
+    if (op > 1) {
+      op = 0.3;
+      console.log("op fail");
+    }
+  }
 };
-if (shuimo2 === true) {
-  ctx.strokeStyle = `rgba(0,0,0,${op})`;
-  op + 0.1;
-  console.log("shuimo");
-  drawLine(last[0], last[1], e.clientX, e.clientY);
-  last = [e.clientX, e.clientY];
-} //水墨失败
+
 canvas.onmouseup = e => {
   paint2 = false;
   clear2 = false;
